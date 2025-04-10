@@ -9,14 +9,15 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t 650251685614.dkr.ecr.ca-central-1.amazonaws.com/wild-rydes-app:latest .
+      - docker build -t test .
+      - docker tag test:latest 650251685614.dkr.ecr.ca-central-1.amazonaws.com/wild-rydes-app:latest
       - echo "Pushing Docker image to ECR..."
       - docker push 650251685614.dkr.ecr.ca-central-1.amazonaws.com/wild-rydes-app:latest
 
   post_build:
     commands:
       - echo "Generating imagedefinitions.json..."
-      - echo '[{"name":"wild-rydes-app","imageUri":"650251685614.dkr.ecr.ca-central-1.amazonaws.com/wild-rydes-app:latest"}]' > imagedefinitions.json
+      - echo '[{"name":"test","imageUri":"650251685614.dkr.ecr.ca-central-1.amazonaws.com/wild-rydes-app:latest"}]' > imagedefinitions.json
 
 artifacts:
   files:
